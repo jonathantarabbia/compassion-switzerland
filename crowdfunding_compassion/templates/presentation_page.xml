@@ -23,7 +23,7 @@
                                      class="project-hero__image"/>
                             </div>
                             <div class="col-12 col-lg-4">
-                                <div class="card project-hero__card">
+                                <div class="card project-hero__card" style="min-height:30rem !Important;">
                                     <t t-if="model == 'participant'">
                                         <h3 class="blue my-3 text-center">
                                                 <t t-esc="'Support ' + participant.name"/>
@@ -75,8 +75,12 @@
                                             <a t-if="project.type == 'collective'" t-attf-href="/projects/join/#{project.id}">
                                                 <button type="button" class="btn btn-white btn-lg btn-block mb-2">Join the project</button>
                                             </a>
+                                            <a t-if="project.type == 'collective'" href="#participants">
+                                                <button type="button" class="btn btn-white btn-lg btn-block mb-2">show paticipants</button>
+                                            </a>
                                         </div>
                                     </t>
+
                                     <div class="row">
                                         <div class="col project-hero__card-share-text align-self-center">Share with your friends</div>
                                         <div class="col align-self-center">
@@ -214,9 +218,9 @@
                         <t t-if="model == 'project'">
                             <!-- Participants -->
                             <t t-if="project.type == 'collective'">
-                                <div class="my-5">
+                                <div id="participants" class="my-5">
                                     <h2 class="blue text-center mb-5">Participants</h2>
-                                    <div class="participants">
+                                    <div  class="participants">
                                         <t t-foreach="project.participant_ids" t-as="participant">
                                             <t t-call="crowdfunding_compassion.participant_card"/>
                                         </t>
